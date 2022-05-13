@@ -2,24 +2,49 @@ import React from "react"
 
 class Fruta extends React.Component {
 
-    constructor() {
-      super()
-  
-      this.state = {
-        cantidad: 0
-      }
+    state = {
+      cantidad: 0
     }
-  
+
+      
     agregar = () => {
-      this.setState({cantidad: this.state.cantidad + 1})
+
+      let nueva_cantidad = this.state.cantidad + 1
+
+      this.props.bus({
+        nombre: this.props.name,
+        total: this.props.price * nueva_cantidad
+      });
+
+      this.props.mayor_bus(this.props.price * nueva_cantidad)
+
+      this.setState({cantidad: nueva_cantidad})
+
     }
   
     quitar = () => {
-      this.setState({cantidad: this.state.cantidad - 1})
+
+      let nueva_cantidad = this.state.cantidad - 1
+
+      this.props.bus({
+        nombre: this.props.name,
+        total: this.props.price * nueva_cantidad
+      });
+
+
+      this.setState({cantidad: nueva_cantidad})
     }
   
     limpiar = () => {
-      this.setState({cantidad: 0})
+
+      let nueva_cantidad = 0
+
+      this.props.bus({
+        nombre: this.props.name,
+        total: this.props.price * nueva_cantidad
+      });
+
+      this.setState({cantidad: nueva_cantidad})
     }
   
     render() {
